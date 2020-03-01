@@ -20,4 +20,7 @@ public class Signup extends AppCompatActivity {
         Intent customer= new Intent(this, CustomerRegestration.class);
         startActivity(customer);
     }
+    public void sellerSignUp(View v){
+
+    }
 }
