@@ -1,5 +1,6 @@
 package com.example.shopinfo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -54,6 +55,15 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         else if(login.getText().toString().equals("LOG OUT")){
             Toast.makeText(this, "User Logged out", Toast.LENGTH_SHORT).show();
             login.setText("LOGIN");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==HOME_PAGE_REQUEST){
+            if(resultCode== com.example.shopinfo.login.EXTRA_KEY)
+                login.setText("LOG OUT");
         }
     }
 }
