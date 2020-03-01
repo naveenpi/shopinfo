@@ -2,12 +2,14 @@ package com.example.shopinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -41,6 +43,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 return true;
             default:
                 return true;
+        }
+    }
+
+    public void login(View view) {
+        if(login.getText().toString().equals("LOGIN")) {
+            Intent login = new Intent(this, com.example.shopinfo.login.class);
+            startActivityForResult(login, HOME_PAGE_REQUEST);
+        }
+        else if(login.getText().toString().equals("LOG OUT")){
+            Toast.makeText(this, "User Logged out", Toast.LENGTH_SHORT).show();
+            login.setText("LOGIN");
         }
     }
 }
