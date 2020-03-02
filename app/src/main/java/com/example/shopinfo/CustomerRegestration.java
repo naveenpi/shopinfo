@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
-public class CustomerRegestration extends AppCompatActivity {
+public class CustomerRegestration extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     EditText firstName, lastName, mailId, userName, password, confirmPassword;
     ImageButton profilePic;
     Button register;
@@ -42,5 +44,28 @@ public class CustomerRegestration extends AppCompatActivity {
         Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(takePictureIntent);
+    }
+
+    public void menu(View view) {
+        PopupMenu popup= new PopupMenu(this,view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.navigation_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Intent toHome=new Intent(this,MainActivity.class);
+                startActivity(toHome);
+                return true;
+            case R.id.item2:
+                return true;
+            case R.id.item3:
+                return true;
+            default:
+                return true;
+        }
     }
 }

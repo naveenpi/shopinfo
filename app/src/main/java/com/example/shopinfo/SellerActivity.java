@@ -2,16 +2,20 @@ package com.example.shopinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class SellerActivity extends AppCompatActivity {
+public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     TextView shopName, categoText, adderessText, phoneText;
     ImageView Image;
@@ -38,5 +42,28 @@ public class SellerActivity extends AppCompatActivity {
         subscribers=findViewById(R.id.sendToSubscribers);
         update=findViewById(R.id.update);
         discounts=findViewById(R.id.discounts);
+    }
+
+    public void menu(View view) {
+        PopupMenu popup= new PopupMenu(this,view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.navigation_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Intent toHome=new Intent(this,MainActivity.class);
+                startActivity(toHome);
+                return true;
+            case R.id.item2:
+                return true;
+            case R.id.item3:
+                return true;
+            default:
+                return true;
+        }
     }
 }
