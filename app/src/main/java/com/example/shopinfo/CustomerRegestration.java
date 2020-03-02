@@ -2,10 +2,13 @@ package com.example.shopinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class CustomerRegestration extends AppCompatActivity {
     EditText firstName, lastName, mailId, userName, password, confirmPassword;
@@ -25,5 +28,12 @@ public class CustomerRegestration extends AppCompatActivity {
 
         profilePic=findViewById(R.id.profile);
         register=findViewById(R.id.button);
+    }
+
+    public void registerCustomer(View view) {
+
+        Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
+        Intent i= new Intent(this, login.class);
+        startActivity(i);
     }
 }
