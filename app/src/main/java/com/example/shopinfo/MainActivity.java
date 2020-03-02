@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,5 +66,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             if(resultCode== com.example.shopinfo.login.EXTRA_KEY)
                 login.setText("LOG OUT");
         }
+    }
+
+    public void call(View view) {
+        Toast.makeText(this,"Making call",Toast.LENGTH_LONG).show();
+        Intent toPhone=new Intent(Intent.ACTION_DIAL);
+        toPhone.setData(Uri.parse("tel:2345671089"));
+        startActivity(toPhone);
     }
 }
