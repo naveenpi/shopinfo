@@ -74,4 +74,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         toPhone.setData(Uri.parse("tel:2345671089"));
         startActivity(toPhone);
     }
+    public void details(View view) {
+        Toast.makeText(this,"Details not uploaded yet",Toast.LENGTH_LONG).show();
+    }
 }
