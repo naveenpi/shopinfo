@@ -36,4 +36,9 @@ public class login extends AppCompatActivity {
 
 
     }
+
+    public void loginSeller(View view) {
+        Intent toSellerActivity= new Intent(this,SellerActivity.class);
+        startActivity(toSellerActivity);
+    }
 }
