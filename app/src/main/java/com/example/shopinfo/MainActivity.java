@@ -77,4 +77,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void details(View view) {
         Toast.makeText(this,"Details not uploaded yet",Toast.LENGTH_LONG).show();
     }
+    public void subscribe(View view) {
+        Toast.makeText(this,"you are subscribed",Toast.LENGTH_LONG).show();
+    }
 }
