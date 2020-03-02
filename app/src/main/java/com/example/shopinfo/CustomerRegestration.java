@@ -39,7 +39,7 @@ public class CustomerRegestration extends AppCompatActivity {
     }
 
     public void profilePicCustomer(View view) {
-        Toast.makeText(this, "Upload profile picture", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(takePictureIntent);
     }
