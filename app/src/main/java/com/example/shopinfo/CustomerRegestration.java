@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,5 +36,11 @@ public class CustomerRegestration extends AppCompatActivity {
         Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
         Intent i= new Intent(this, login.class);
         startActivity(i);
+    }
+
+    public void profilePicCustomer(View view) {
+        Toast.makeText(this, "Upload profile picture", Toast.LENGTH_LONG).show();
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivity(takePictureIntent);
     }
 }
