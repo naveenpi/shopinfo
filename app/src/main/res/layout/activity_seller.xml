@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Customer Regestration"
+        android:text="Seller"
         android:textAlignment="center"
         android:padding="7dp"
         android:textSize="24sp"
@@ -49,6 +49,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085" />
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:onClick="logout"
+        android:textAlignment="center"
+        android:text="LOGOUT"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/categoryText"
@@ -191,6 +206,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UPDATE"
+        android:onClick="update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.854"
@@ -231,6 +247,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send to Subscribers"
+        android:onClick="toSubscribers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.072"
@@ -243,6 +260,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Discounts"
+        android:onClick="toDiscount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.936"

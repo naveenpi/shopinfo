@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Customer Regestration"
+        android:text="Seller Regestration"
         android:textAlignment="center"
         android:padding="7dp"
         android:textSize="24sp"

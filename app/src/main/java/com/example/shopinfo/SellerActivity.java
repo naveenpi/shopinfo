@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,8 +16,9 @@ import android.widget.PopupMenu;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener ,  AdapterView.OnItemSelectedListener{
 
     TextView shopName, categoText, adderessText, phoneText;
     ImageView Image;
@@ -24,6 +27,8 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
+
+    String[] products = { "phone", "tablet", "laptop", "x-box", "play-station"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,11 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         subscribers=findViewById(R.id.sendToSubscribers);
         update=findViewById(R.id.update);
         discounts=findViewById(R.id.discounts);
+
+        product.setOnItemSelectedListener(this);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,products);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        product.setAdapter(adapter);
     }
 
     public void menu(View view) {
@@ -65,5 +75,32 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
             default:
                 return true;
         }
+    }
+
+    public void logout(View view) {
+        Intent toLogin= new Intent(this,login.class);
+        startActivity(toLogin);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getApplicationContext(),products[position] , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void update(View view) {
+        Toast.makeText(this, "Updated Quantity", Toast.LENGTH_LONG).show();
+    }
+
+    public void toSubscribers(View view) {
+        Toast.makeText(this, "Message sent to Subscribers", Toast.LENGTH_LONG).show();
+    }
+
+    public void toDiscount(View view) {
+        Toast.makeText(this, "Discount information updated", Toast.LENGTH_LONG).show();
     }
 }
