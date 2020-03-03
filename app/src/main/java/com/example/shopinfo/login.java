@@ -63,6 +63,8 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
                 startActivity(toAbout);
                 return true;
             case R.id.item3:
+                Intent toShare=new Intent(this,Share.class);
+                startActivity(toShare);
                 return true;
             default:
                 return true;

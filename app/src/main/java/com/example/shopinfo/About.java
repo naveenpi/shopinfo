@@ -33,6 +33,8 @@ public class About extends AppCompatActivity implements PopupMenu.OnMenuItemClic
             case R.id.item2:
                 return true;
             case R.id.item3:
+                Intent toShare=new Intent(this,Share.class);
+                startActivity(toShare);
                 return true;
             default:
                 return true;

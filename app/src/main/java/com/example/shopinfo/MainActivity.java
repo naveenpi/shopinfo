@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 startActivity(toAbout);
                 return true;
             case R.id.item3:
+                Intent toShare=new Intent(this,Share.class);
+                startActivity(toShare);
                 return true;
             default:
                 return true;

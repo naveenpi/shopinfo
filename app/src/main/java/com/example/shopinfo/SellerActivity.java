@@ -73,6 +73,8 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
                 startActivity(toAbout);
                 return true;
             case R.id.item3:
+                Intent toShare=new Intent(this,Share.class);
+                startActivity(toShare);
                 return true;
             default:
                 return true;
