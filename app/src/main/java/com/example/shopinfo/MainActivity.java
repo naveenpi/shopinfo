@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             case R.id.item1:
                 return true;
             case R.id.item2:
+                Intent toAbout=new Intent(this,About.class);
+                startActivity(toAbout);
                 return true;
             case R.id.item3:
                 return true;

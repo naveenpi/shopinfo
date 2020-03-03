@@ -60,6 +60,8 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
                 startActivity(toHome);
                 return true;
             case R.id.item2:
+                Intent toAbout=new Intent(this,About.class);
+                startActivity(toAbout);
                 return true;
             case R.id.item3:
                 return true;

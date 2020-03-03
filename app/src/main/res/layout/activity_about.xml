@@ -9,7 +9,7 @@
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="HOME"
+        android:text="ABOUT"
         android:textAlignment="center"
         android:padding="7dp"
         android:textSize="24sp"
