@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">shopinfo</string>
+    <string name="app_name">shop info</string>
     <string name="link"><a href="https://github.com/naveenpi/shopinfo">https://github.com/naveenpi/shopinfo</a></string>
     <string name="textDescription">The main mission of this app is to inform people who are interested in seeking information about the availability of product, quantity of the product and the shop timings, discounts on the products.
 This app serves a very helpful communication between the customers and the Sellers where through this app the Sellers will be able to address and ease the customer’s problems which they daily encounter like.
