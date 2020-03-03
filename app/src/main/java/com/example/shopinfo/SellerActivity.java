@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener ,  AdapterView.OnItemSelectedListener{
 
+    public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
     ImageView Image;
     RadioGroup yesNo;
@@ -82,8 +83,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     }
 
     public void logout(View view) {
-        Intent toLogin= new Intent(this,login.class);
-        startActivity(toLogin);
+        Intent toLogin= new Intent();
+        setResult(EXTRA_LOGIN_KEY,toLogin);
+        finish();
     }
 
     @Override

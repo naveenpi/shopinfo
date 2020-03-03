@@ -1,5 +1,6 @@
 package com.example.shopinfo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.PopupMenu;
 
 public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     public static final int EXTRA_KEY = 0;
+    public static final int LOGIN_PAGE = 12;
     Button loginbtn, signbtn;
     EditText username, password;
 
@@ -41,7 +43,19 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public void loginSeller(View view) {
         Intent toSellerActivity= new Intent(this,SellerActivity.class);
-        startActivity(toSellerActivity);
+        startActivityForResult(toSellerActivity,LOGIN_PAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==LOGIN_PAGE){
+            if(resultCode== SellerActivity.EXTRA_LOGIN_KEY){
+
+            }
+
+        }
     }
 
     public void menu(View view) {
@@ -70,4 +84,5 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
                 return true;
         }
     }
+
 }
