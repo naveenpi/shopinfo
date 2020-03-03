@@ -8,5 +8,5 @@
         android:title="About"/>
 
     <item android:id="@+id/item3"
-        android:title="Help"/>
+        android:title="Share"/>
 </menu>
