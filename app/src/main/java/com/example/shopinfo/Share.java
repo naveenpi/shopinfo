@@ -2,10 +2,13 @@ package com.example.shopinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 
-public class Share extends AppCompatActivity {
+public class Share extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +17,27 @@ public class Share extends AppCompatActivity {
     }
 
     public void menu(View view) {
-        
+        PopupMenu popup= new PopupMenu(this,view);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.navigation_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Intent toHome=new Intent(this,MainActivity.class);
+                startActivity(toHome);
+                return true;
+            case R.id.item2:
+                Intent toAbout=new Intent(this,About.class);
+                startActivity(toAbout);
+                return true;
+            case R.id.item3:
+                return true;
+            default:
+                return true;
+        }
     }
 }
