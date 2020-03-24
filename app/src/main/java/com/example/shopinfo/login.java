@@ -30,28 +30,30 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
     }
 
     public void login(View view) {
-
-       if(username.getText().toString().equals("w") && password.getText().toString().equals("w")){
-        Log.d("username",username.getText().toString());
-            Intent toMainActivity = new Intent();
-            setResult(EXTRA_KEY, toMainActivity);
-            finish();
-        }
-       else{
-           Log.d("invalid",password.getText().toString());
-       }
+        if (validate()){
+            if (username.getText().toString().equals("c") && password.getText().toString().equals("c")) {
+                Log.d("username", username.getText().toString());
+                Intent toMainActivity = new Intent();
+                setResult(EXTRA_KEY, toMainActivity);
+                finish();
+            } else {
+                Log.d("invalid", password.getText().toString());
+            }
+         }
     }
 
     public void signup(View view) {
-        Intent signup = new Intent(this, Signup.class);
-        startActivity(signup);
-
-
+            Intent signup = new Intent(this, Signup.class);
+            startActivity(signup);
     }
 
     public void loginSeller(View view) {
-        Intent toSellerActivity= new Intent(this,SellerActivity.class);
-        startActivityForResult(toSellerActivity,LOGIN_PAGE);
+        if(validate()) {
+            if (username.getText().toString().equals("s") && password.getText().toString().equals("s")) {
+                Intent toSellerActivity = new Intent(this, SellerActivity.class);
+                startActivityForResult(toSellerActivity, LOGIN_PAGE);
+            }
+        }
     }
 
     @Override
@@ -93,4 +95,9 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
         }
     }
 
+    public boolean validate(){
+        boolean valid=true;
+
+        return valid;
+    }
 }
