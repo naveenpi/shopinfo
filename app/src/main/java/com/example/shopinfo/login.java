@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +30,16 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
     }
 
     public void login(View view) {
-        Intent toMainActivity = new Intent();
-        setResult(EXTRA_KEY, toMainActivity);
-        finish();
+
+       if(username.getText().toString().equals("w") && password.getText().toString().equals("w")){
+        Log.d("username",username.getText().toString());
+            Intent toMainActivity = new Intent();
+            setResult(EXTRA_KEY, toMainActivity);
+            finish();
+        }
+       else{
+           Log.d("invalid",password.getText().toString());
+       }
     }
 
     public void signup(View view) {
