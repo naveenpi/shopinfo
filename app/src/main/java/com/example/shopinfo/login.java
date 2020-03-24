@@ -97,7 +97,14 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public boolean validate(){
         boolean valid=true;
-
+        if(username.getText().toString().isEmpty()){
+            username.setError("enter the username");
+            valid=false;
+        }
+        if(password.getText().toString().isEmpty()){
+            password.setError("enter the password");
+            valid=false;
+        }
         return valid;
     }
 }
