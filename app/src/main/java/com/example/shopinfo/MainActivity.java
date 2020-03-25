@@ -2,11 +2,16 @@ package com.example.shopinfo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,12 +23,49 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public static final int HOME_PAGE_REQUEST=11;
     ImageButton navigation;
     Button login;
+    private ChoiceAdapter choiceAdapter = null;
+    private RecyclerView choiceRV= null;
+    private GestureDetectorCompat choiceDetector = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navigation=findViewById(R.id.navigation);
         login=findViewById(R.id.login);
+
+        choiceAdapter= new ChoiceAdapter();
+        choiceRV=findViewById(R.id.choiceRV);
+        choiceRV.setAdapter(choiceAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        choiceRV.setLayoutManager(layoutManager);
+        choiceDetector=new GestureDetectorCompat(this, new RecyclerViewOnGestureListener());
+        choiceRV.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return choiceDetector.onTouchEvent(e);
+            }
+        });
+    }
+
+    private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            View view = choiceRV.findChildViewUnder(e.getX(), e.getY());
+            if (view != null) {
+                RecyclerView.ViewHolder holder = choiceRV.getChildViewHolder(view);
+                if (holder instanceof ChoiceAdapter.ChoiceViewHolder && choiceAdapter.getItemCount()>1) {
+                    int position = holder.getAdapterPosition();
+                    ChoiceModel myModel =ChoiceModel.getSingleton();
+//                    myModel.choiceList.remove(position);
+//                    choiceAdapter.notifyItemRemoved(position);
+                    Intent toDetails= new Intent(MainActivity.this,DetailsActivity.class);
+                    startActivity(toDetails);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public void menu(View v) {
@@ -60,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         else if(login.getText().toString().equals("LOG OUT")){
             Toast.makeText(this, "User Logged out", Toast.LENGTH_SHORT).show();
             login.setText("LOGIN");
+
         }
     }
 
