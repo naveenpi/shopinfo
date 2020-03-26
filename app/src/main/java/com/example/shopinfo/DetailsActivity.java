@@ -42,4 +42,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
                 return true;
         }
     }
+
+    public void call(View view) {
+    }
 }
