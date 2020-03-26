@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     public static final int HOME_PAGE_REQUEST=11;
     ImageButton navigation;
-    Button login;
+    Button login,editCustomer;
     private ChoiceAdapter choiceAdapter = null;
     private RecyclerView choiceRV= null;
     private GestureDetectorCompat choiceDetector = null;
@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_main);
         navigation=findViewById(R.id.navigation);
         login=findViewById(R.id.login);
-
+        editCustomer=findViewById(R.id.editCustomer);
+        //editCustomer.setVisibility();
+        editCustomer.setClickable(false);
         choiceAdapter= new ChoiceAdapter();
         choiceRV=findViewById(R.id.choiceRV);
         choiceRV.setAdapter(choiceAdapter);
@@ -45,6 +47,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 return choiceDetector.onTouchEvent(e);
             }
         });
+    }
+
+    public void editCustomer(View view) {
+        if(login.getText().toString().equals("LOG OUT")) {
+            Intent toEditCustomerActivity = new Intent(this, EditCustomerActivity.class);
+            startActivity(toEditCustomerActivity);
+        }
     }
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -96,8 +105,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     public void login(View view) {
         if(login.getText().toString().equals("LOGIN")) {
+
             Intent login = new Intent(this, com.example.shopinfo.login.class);
             startActivityForResult(login, HOME_PAGE_REQUEST);
+
         }
         else if(login.getText().toString().equals("LOG OUT")){
             Toast.makeText(this, "User Logged out", Toast.LENGTH_SHORT).show();
@@ -112,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         if(requestCode==HOME_PAGE_REQUEST){
             if(resultCode== com.example.shopinfo.login.EXTRA_KEY)
                 login.setText("LOG OUT");
+            editCustomer.setVisibility(View.VISIBLE);
+            editCustomer.setClickable(true);
         }
     }
 
