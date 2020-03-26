@@ -42,4 +42,10 @@ public class EditCustomerActivity extends AppCompatActivity implements PopupMenu
                 return true;
         }
     }
+
+    public void profilePicCustomer(View view) {
+    }
+
+    public void updateCustomerDetails(View view) {
+    }
 }
