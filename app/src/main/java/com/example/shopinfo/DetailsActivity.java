@@ -3,10 +3,12 @@ package com.example.shopinfo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -44,6 +46,10 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
     }
 
     public void call(View view) {
+        Toast.makeText(this,"Making call",Toast.LENGTH_LONG).show();
+        Intent toPhone=new Intent(Intent.ACTION_DIAL);
+        toPhone.setData(Uri.parse("tel:2345671089"));
+        startActivity(toPhone);
     }
 
     public void subscribe(View view) {
