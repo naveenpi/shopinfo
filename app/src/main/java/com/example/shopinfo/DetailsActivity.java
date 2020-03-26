@@ -45,4 +45,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
 
     public void call(View view) {
     }
+
+    public void subscribe(View view) {
+    }
 }
