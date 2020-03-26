@@ -111,5 +111,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     }
 
     public void editSeller(View view) {
+        Intent toEditSeller=new Intent(this,EditSelllerActivity.class);
+        startActivity(toEditSeller);
     }
 }
