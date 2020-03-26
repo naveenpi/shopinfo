@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class EditSelllerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
@@ -42,5 +44,17 @@ public class EditSelllerActivity extends AppCompatActivity implements PopupMenu.
             default:
                 return true;
         }
+    }
+
+    public void profilePicSeller(View view) {
+        Toast.makeText(this, "Upload profile picture of seller", Toast.LENGTH_LONG).show();
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivity(takePictureIntent);
+    }
+
+    public void updateSeller(View view) {
+        Toast.makeText(this, "User Successfully updated the information", Toast.LENGTH_LONG).show();
+        Intent i= new Intent(this, login.class);
+        startActivity(i);
     }
 }
