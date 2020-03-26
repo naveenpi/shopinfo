@@ -53,6 +53,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
     }
 
     public void subscribe(View view) {
+        Toast.makeText(this,"you are subscribed",Toast.LENGTH_LONG).show();
     }
 
     public void details(View view) {
