@@ -56,5 +56,6 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
     }
 
     public void details(View view) {
+        Toast.makeText(this,"Details not uploaded yet",Toast.LENGTH_LONG).show();
     }
 }
