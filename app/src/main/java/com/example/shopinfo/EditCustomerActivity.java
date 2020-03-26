@@ -52,5 +52,8 @@ public class EditCustomerActivity extends AppCompatActivity implements PopupMenu
     }
 
     public void updateCustomerDetails(View view) {
+        Toast.makeText(this, "User Successfully updated the details", Toast.LENGTH_LONG).show();
+        Intent i= new Intent(this, login.class);
+        startActivity(i);
     }
 }
