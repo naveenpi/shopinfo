@@ -109,4 +109,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     public void toDiscount(View view) {
         Toast.makeText(this, "Discount information updated", Toast.LENGTH_LONG).show();
     }
+
+    public void editSeller(View view) {
+    }
 }
