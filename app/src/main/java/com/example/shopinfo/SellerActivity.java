@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,7 +30,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     //String shopNameString,categoryString,addressString,phoneNumberString;
     ImageView Image;
     RadioGroup yesNo;
-
+    RadioButton radio;
+    int radioId;
+    String radioText;
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
@@ -55,10 +59,29 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         update=findViewById(R.id.update);
         discounts=findViewById(R.id.discounts);
 
-        shopName.setText(SellerRegestration.getActivityInstance().getShopNameString());
-        categoText.setText(SellerRegestration.getActivityInstance().getCategoryString());
-        adderessText.setText(SellerRegestration.getActivityInstance().getAddressString());
-        phoneText.setText(SellerRegestration.getActivityInstance().getPhoneNumberString());
+
+
+        //if(!SellerRegestration.getActivityInstance().getAddressString().equals(""))
+            shopName.setText(SellerRegestration.getActivityInstance().getShopNameString());
+        //else
+            //shopName.setText("Shop name");
+        //if(!SellerRegestration.getActivityInstance().getCategoryString().equals(""))
+            categoText.setText(SellerRegestration.getActivityInstance().getCategoryString());
+        //else
+            //categoText.setText("category");
+        //if(!SellerRegestration.getActivityInstance().getAddressString().equals(""))
+            adderessText.setText(SellerRegestration.getActivityInstance().getAddressString());
+        //else
+            //adderessText.setText("address");
+        //if(!SellerRegestration.getActivityInstance().phoneNumberString.equals(""))
+            phoneText.setText(SellerRegestration.getActivityInstance().getPhoneNumberString());
+        //else
+            //phoneText.setText("phone number");
+
+        radioId=yesNo.getCheckedRadioButtonId();
+        radio=(RadioButton) findViewById(radioId);
+        radioText=radio.getText().toString();
+        Log.d("radio",radioText);
 
         product.setOnItemSelectedListener(this);
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,products);

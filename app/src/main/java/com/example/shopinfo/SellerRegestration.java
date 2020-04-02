@@ -18,12 +18,11 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
 
 
     public static SellerRegestration INSTANCE;
-
     EditText shopName, category, address, phoneNumber, userName, password, confirmPassword;
     ImageButton profilePicSeller;
     Button registerSeller;
 
-    String shopNameString,categoryString,addressString,phoneNumberString,userNameString,passwordString, confirmPasswordString;
+    String shopNameString="",categoryString="",addressString="",phoneNumberString="",userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,9 +38,15 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
         userName=findViewById(R.id.userNameSeller);;
         password=findViewById(R.id.passwordSeller);
         confirmPassword=findViewById(R.id.confirmPasswordSeller);
+
+//        shopNameString=shopName.getText().toString();
+//        categoryString=category.getText().toString();
+//        addressString=address.getText().toString();
+//        phoneNumberString=phoneNumber.getText().toString();
     }
     public static SellerRegestration getActivityInstance()
     {
+        //INSTANCE=new SellerRegestration();
         return INSTANCE;
     }
 
