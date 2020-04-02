@@ -115,9 +115,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         startActivity(toEditSeller);
     }
 
-    public void updateDetails(View view) {
-
-        ChoiceModel model= ChoiceModel.getSingleton();
-        model.add(R.drawable.ic_image_black_24dp,"hi","kansas");
-    }
+//    public void updateDetails(View view) {
+//
+//        ChoiceModel model= ChoiceModel.getSingleton();
+//        model.add(R.drawable.ic_image_black_24dp,"hi","kansas");
+//    }
 }

@@ -70,6 +70,8 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
             Log.d("seller confirm password",confirmPasswordString);
             if(confirmPasswordString.equals(passwordString)) {
                 Toast.makeText(this, "User Successfully registered as a Seller", Toast.LENGTH_LONG).show();
+                ChoiceModel model= ChoiceModel.getSingleton();
+                model.add(R.drawable.ic_image_black_24dp,addressString,shopNameString,categoryString);
                 Intent i= new Intent(this, login.class);
                 startActivity(i);
             }
