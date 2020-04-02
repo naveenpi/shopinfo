@@ -9,16 +9,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, AdapterView.OnItemSelectedListener {
 
     public static final int HOME_PAGE_REQUEST=11;
     ImageButton navigation;
@@ -26,19 +31,30 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     private ChoiceAdapter choiceAdapter = null;
     private RecyclerView choiceRV= null;
     private GestureDetectorCompat choiceDetector = null;
+    String[] cities = { "Maryville", "kansas", "St.Joseph"};
+    Spinner city;
+    RecyclerView.LayoutManager layoutManager;
+    public static String citySelected="Maryville";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navigation=findViewById(R.id.navigation);
         login=findViewById(R.id.login);
+        city=findViewById(R.id.spinnerMainActivity);
+        city.setOnItemSelectedListener(this);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,cities);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        city.setAdapter(adapter);
         editCustomer=findViewById(R.id.editCustomer);
         //editCustomer.setVisibility();
         editCustomer.setClickable(false);
+
+
         choiceAdapter= new ChoiceAdapter();
         choiceRV=findViewById(R.id.choiceRV);
         choiceRV.setAdapter(choiceAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
         choiceRV.setLayoutManager(layoutManager);
         choiceDetector=new GestureDetectorCompat(this, new RecyclerViewOnGestureListener());
         choiceRV.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
@@ -55,6 +71,24 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             startActivity(toEditCustomerActivity);
         }
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        citySelected=cities[position];
+        Toast.makeText(getApplicationContext(),citySelected , Toast.LENGTH_LONG).show();
+        Log.d("city",citySelected);
+        //if(position>=0 && position < cities.length){
+            ChoiceModel model=ChoiceModel.getSingleton();
+            model.getChoiceData(citySelected);
+            choiceAdapter.notifyDataSetChanged();
+        //}
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
 
     private class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -140,4 +174,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void subscribe(View view) {
         Toast.makeText(this,"you are subscribed",Toast.LENGTH_LONG).show();
     }
+
+
 }

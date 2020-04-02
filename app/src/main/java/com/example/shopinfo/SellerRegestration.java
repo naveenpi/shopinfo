@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
     EditText shopName, category, address, phoneNumber, userName, password, confirmPassword;
     ImageButton profilePicSeller;
     Button registerSeller;
+
+    String shopNameString,categoryString,addressString, userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +36,48 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
 
     public void registerCustomer(View view) {
 
-        Toast.makeText(this, "User Successfully registered as a Seller", Toast.LENGTH_LONG).show();
-        Intent i= new Intent(this, login.class);
-        startActivity(i);
+        if(shopName.getText().toString().isEmpty()){
+            shopName.setError("Enter shop name");
+        }
+        if(category.getText().toString().isEmpty()){
+            category.setError("Enter category");
+        }
+        if(address.getText().toString().isEmpty()){
+            address.setError("Enter address");
+        }
+        if(userName.getText().toString().isEmpty()){
+            userName.setError("Enter userName");
+        }
+        if(password.getText().toString().isEmpty()){
+            password.setError("Enter password");
+        }
+        if(confirmPassword.getText().toString().isEmpty()){
+            confirmPassword.setError("Enter confirmPassword");
+        }
+
+        if(!(shopName.getText().toString().isEmpty() || category.getText().toString().isEmpty() || address.getText().toString().isEmpty() || userName.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty())) {
+            shopNameString=shopName.getText().toString();
+            Log.d("shop name",shopNameString);
+            categoryString=category.getText().toString();
+            Log.d("category", categoryString);
+            addressString=address.getText().toString();
+            Log.d("address", addressString);
+            userNameString=userName.getText().toString();
+            Log.d("Seller user name", userNameString);
+            passwordString=password.getText().toString();
+            Log.d("Seller password",passwordString);
+            confirmPasswordString=confirmPassword.getText().toString();
+            Log.d("seller confirm password",confirmPasswordString);
+            if(confirmPasswordString.equals(passwordString)) {
+                Toast.makeText(this, "User Successfully registered as a Seller", Toast.LENGTH_LONG).show();
+                Intent i= new Intent(this, login.class);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(this, "re enter the password", Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
 

@@ -15,7 +15,7 @@ public class ChoiceModel {
         //public String choice;
         public int image;
         public String name, description;
-        public ChoiceInfo(int image, String name, String description) {
+        public ChoiceInfo(int image, String city, String name, String description) {
 
             this.image = image;
             this.name=name;
@@ -34,24 +34,68 @@ public class ChoiceModel {
         loadChoices();
     }
 
-    public void add(String msg){
-       // choiceList.add(new ChoiceInfo(msg));
-    }
+
     private void loadChoices() {
 
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Nike Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Reebok Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"puma Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Reebok Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Nike Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Reebok Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Nike Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Reebok Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Nike Shoes","We sell all types"));
-        choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Reebok Shoes","We sell all types"));
+
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+
+
 
 
     }
 
+   public  void getChoiceData(String city){
+
+       if(city.equals("kansas")){
+           choiceList.clear();
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+       }
+       if(MainActivity.citySelected.equals("Maryville")){
+           choiceList.clear();
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "Maryville","Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));
+       }
+
+       if(MainActivity.citySelected.equals("St.Joseph")){
+           choiceList.clear();
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "St.Joseph","St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "St.Joseph","St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp, "St.Joseph","St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"St.Joseph", "St.Joseph Shoes", "We sell all types"));
+       }
+    }
 
 }
