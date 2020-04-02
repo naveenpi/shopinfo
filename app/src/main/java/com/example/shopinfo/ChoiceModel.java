@@ -8,7 +8,10 @@ import java.util.ArrayList;
 public class ChoiceModel {
 
     public ArrayList<ChoiceInfo> choiceList;
+    public ArrayList<ChoiceInfo> kansasList;
     private static ChoiceModel theModel= null;
+
+
 
 
     public static class ChoiceInfo {
@@ -31,10 +34,14 @@ public class ChoiceModel {
 
     private ChoiceModel() {
         choiceList = new ArrayList<ChoiceInfo>();
+        kansasList=new ArrayList<ChoiceInfo>();
         loadChoices();
     }
 
+    public void add(int ic_image_black_24dp, String hi, String kansas) {
 
+        kansasList.add(new ChoiceInfo(ic_image_black_24dp, hi, kansas,"test"));
+    }
     private void loadChoices() {
 
 
@@ -58,17 +65,19 @@ public class ChoiceModel {
 
        if(city.equals("kansas")){
            choiceList.clear();
+           kansasList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas wines", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
-           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
-           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
-           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
-           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
-       }
+//           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+//           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+//           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+//           choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"kansas", "kansas Shoes", "We sell all types"));
+           choiceList.addAll(kansasList);
+          }
        if(MainActivity.citySelected.equals("Maryville")){
            choiceList.clear();
            choiceList.add(new ChoiceInfo(R.drawable.ic_image_black_24dp,"Maryville", "Maryville Shoes", "We sell all types"));

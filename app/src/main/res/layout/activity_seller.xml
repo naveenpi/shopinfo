@@ -281,4 +281,17 @@
         app:layout_constraintTop_toBottomOf="@id/sendToSubscribers"
         app:layout_constraintVertical_bias="0.53" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update details"
+        android:onClick="updateDetails"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/discounts"
+        app:layout_constraintVertical_bias="0.53" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

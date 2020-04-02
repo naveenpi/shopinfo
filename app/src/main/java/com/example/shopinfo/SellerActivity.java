@@ -114,4 +114,10 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         Intent toEditSeller=new Intent(this,EditSelllerActivity.class);
         startActivity(toEditSeller);
     }
+
+    public void updateDetails(View view) {
+
+        ChoiceModel model= ChoiceModel.getSingleton();
+        model.add(R.drawable.ic_image_black_24dp,"hi","kansas");
+    }
 }
