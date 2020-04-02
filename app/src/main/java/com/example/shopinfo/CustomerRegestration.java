@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
     EditText firstName, lastName, mailId, userName, password, confirmPassword;
     ImageButton profilePic;
     Button register;
-
+    String lastNameString,firstNameString,mailIdString, userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +32,52 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
 
         profilePic=findViewById(R.id.profile);
         register=findViewById(R.id.button);
+
+        lastNameString=lastName.getText().toString();
     }
 
     public void registerCustomer(View view) {
 
-        Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
-        Intent i= new Intent(this, login.class);
-        startActivity(i);
+        if(lastName.getText().toString().isEmpty()){
+            lastName.setError("Enter lastName");
+        }
+        if(firstName.getText().toString().isEmpty()){
+            firstName.setError("Enter firstName");
+        }
+        if(mailId.getText().toString().isEmpty()){
+            mailId.setError("Enter mailId");
+        }
+        if(userName.getText().toString().isEmpty()){
+            userName.setError("Enter userName");
+        }
+        if(password.getText().toString().isEmpty()){
+            password.setError("Enter password");
+        }
+        if(confirmPassword.getText().toString().isEmpty()){
+            confirmPassword.setError("Enter confirmPassword");
+        }
+        if(!(lastName.getText().toString().isEmpty() || firstName.getText().toString().isEmpty() || mailId.getText().toString().isEmpty() || userName.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty())) {
+            lastNameString=lastName.getText().toString();
+            Log.d("Customer last name",lastNameString);
+            firstNameString=firstName.getText().toString();
+            Log.d("Customer first name", firstNameString);
+            mailIdString=mailId.getText().toString();
+            Log.d("customer mail id", mailIdString);
+            userNameString=userName.getText().toString();
+            Log.d("customer user name", userNameString);
+            passwordString=password.getText().toString();
+            Log.d("Customer password",passwordString);
+            confirmPasswordString=confirmPassword.getText().toString();
+            Log.d("Cust confirm password",confirmPasswordString);
+            if(confirmPasswordString.equals(passwordString)) {
+                Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this, login.class);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(this, "re enter the password", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void profilePicCustomer(View view) {
