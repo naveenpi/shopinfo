@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         layoutManager = new LinearLayoutManager(this);
         choiceRV.setLayoutManager(layoutManager);
         choiceDetector=new GestureDetectorCompat(this, new RecyclerViewOnGestureListener());
+
         choiceRV.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {

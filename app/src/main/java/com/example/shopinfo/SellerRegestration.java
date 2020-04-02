@@ -15,13 +15,20 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 public class SellerRegestration extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
+
+    public static SellerRegestration INSTANCE;
+
     EditText shopName, category, address, phoneNumber, userName, password, confirmPassword;
     ImageButton profilePicSeller;
     Button registerSeller;
 
-    String shopNameString,categoryString,addressString, userNameString,passwordString, confirmPasswordString;
+    String shopNameString,categoryString,addressString,phoneNumberString,userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        INSTANCE=this;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_regestration);
 
@@ -33,7 +40,28 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
         password=findViewById(R.id.passwordSeller);
         confirmPassword=findViewById(R.id.confirmPasswordSeller);
     }
+    public static SellerRegestration getActivityInstance()
+    {
+        return INSTANCE;
+    }
 
+    public String getShopNameString()
+    {
+        return shopNameString;
+    }
+
+    public String getAddressString()
+    {
+        return addressString;
+    }
+
+    public String getCategoryString(){
+        return categoryString;
+    }
+
+    public String getPhoneNumberString(){
+        return  phoneNumberString;
+    }
     public void registerCustomer(View view) {
 
         if(shopName.getText().toString().isEmpty()){
@@ -45,6 +73,9 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
         if(address.getText().toString().isEmpty()){
             address.setError("Enter address");
         }
+        if(phoneNumber.getText().toString().isEmpty()){
+            phoneNumber.setError("Enter phone number");
+        }
         if(userName.getText().toString().isEmpty()){
             userName.setError("Enter userName");
         }
@@ -55,13 +86,15 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
             confirmPassword.setError("Enter confirmPassword");
         }
 
-        if(!(shopName.getText().toString().isEmpty() || category.getText().toString().isEmpty() || address.getText().toString().isEmpty() || userName.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty())) {
+        if(!(shopName.getText().toString().isEmpty() || phoneNumber.getText().toString().isEmpty() ||category.getText().toString().isEmpty() || address.getText().toString().isEmpty() || userName.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty())) {
             shopNameString=shopName.getText().toString();
             Log.d("shop name",shopNameString);
             categoryString=category.getText().toString();
             Log.d("category", categoryString);
             addressString=address.getText().toString();
             Log.d("address", addressString);
+            phoneNumberString=address.getText().toString();
+            Log.d("seller phone number", phoneNumberString);
             userNameString=userName.getText().toString();
             Log.d("Seller user name", userNameString);
             passwordString=password.getText().toString();

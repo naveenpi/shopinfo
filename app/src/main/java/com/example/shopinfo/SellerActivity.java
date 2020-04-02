@@ -20,8 +20,12 @@ import android.widget.Toast;
 
 public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener ,  AdapterView.OnItemSelectedListener{
 
+
+
+
     public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
+    //String shopNameString,categoryString,addressString,phoneNumberString;
     ImageView Image;
     RadioGroup yesNo;
 
@@ -32,6 +36,8 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     String[] products = { "phone", "tablet", "laptop", "x-box", "play-station"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller);
 
@@ -49,11 +55,17 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         update=findViewById(R.id.update);
         discounts=findViewById(R.id.discounts);
 
+        shopName.setText(SellerRegestration.getActivityInstance().getShopNameString());
+        categoText.setText(SellerRegestration.getActivityInstance().getCategoryString());
+        adderessText.setText(SellerRegestration.getActivityInstance().getAddressString());
+        phoneText.setText(SellerRegestration.getActivityInstance().getPhoneNumberString());
+
         product.setOnItemSelectedListener(this);
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,products);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         product.setAdapter(adapter);
     }
+
 
     public void menu(View view) {
         PopupMenu popup= new PopupMenu(this,view);
