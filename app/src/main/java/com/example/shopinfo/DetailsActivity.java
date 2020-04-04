@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -13,12 +14,28 @@ import android.widget.Toast;
 
 public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
-
+    TextView text;
+    MainViewModel.SellerShopDetails modelShop=new MainViewModel.SellerShopDetails();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        text=findViewById(R.id.detailsText);
+        
+        modelShop=modelShop.getSellerShoDetails();
+
+        modelShop.getSellerShopDetailsString().observe(this, new androidx.lifecycle.Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+
+                Log.d("message ",s);
+
+                text.setText(s);
+
+            }});
     }
 
     public void menu(View view) {

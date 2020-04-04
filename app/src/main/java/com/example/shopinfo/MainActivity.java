@@ -23,6 +23,8 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, AdapterView.OnItemSelectedListener {
 
     public static final int HOME_PAGE_REQUEST=11;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         city.setAdapter(adapter);
         editCustomer=findViewById(R.id.editCustomer);
-        //editCustomer.setVisibility();
         editCustomer.setClickable(false);
 
 
@@ -103,8 +104,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     ChoiceModel myModel =ChoiceModel.getSingleton();
 //                    myModel.choiceList.remove(position);
 //                    choiceAdapter.notifyItemRemoved(position);
-                    Intent toDetails= new Intent(MainActivity.this,DetailsActivity.class);
-                    startActivity(toDetails);
+                    if(login.getText().equals("LOG OUT")) {
+                        Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
+                        startActivity(toDetails);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Please login to proceed",Toast.LENGTH_LONG).show();
+                    }
                     return true;
                 }
             }
@@ -146,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         }
         else if(login.getText().toString().equals("LOG OUT")){
-            Toast.makeText(this, "User Logged out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User Logged out", LENGTH_SHORT).show();
             login.setText("LOGIN");
 
         }

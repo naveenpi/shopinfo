@@ -51,4 +51,43 @@ public class MainViewModel {
             return modelSeller;
         }
     }
+
+
+    public static MainViewModel.SellerShopDetails modelShop;
+    public static class SellerShopDetails{
+
+        String availability="YES";
+        String product="phone";
+        int quantity=2;
+
+        public SellerShopDetails(String availability, String product, int quantity) {
+            this.availability = availability;
+            this.product = product;
+            this.quantity = quantity;
+        }
+
+        public SellerShopDetails() {
+        }
+
+        private MutableLiveData<SellerShopDetails> theSellerShop=new MutableLiveData<>();
+        private LiveData<String> sellerShopString = Transformations.map(theSellerShop, new Function<SellerShopDetails, String>() {
+            @Override
+            public String apply(SellerShopDetails data) {
+                return "Availability: "+modelShop.availability+"\n"+"product: "+modelShop.product+"\n"+"quantity: "+modelShop.quantity;
+            }
+        });
+        public LiveData<String> getSellerShopDetailsString() {
+
+            return sellerShopString;
+        }
+
+        public void setSellerShoDetails(SellerShopDetails data){
+            modelShop=data;
+            theSellerShop.setValue(data);
+        }
+
+        public SellerShopDetails getSellerShoDetails(){
+            return modelShop;
+        }
+    }
 }

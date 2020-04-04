@@ -29,7 +29,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     public static SellerActivity INSTANCE;
     public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
-
+    int quantityValue;
     ImageView Image;
     RadioGroup yesNo;
     RadioButton radio;
@@ -39,6 +39,8 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
     MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
+    MainViewModel.SellerShopDetails modelShop;
+    String productString;
 
     String[] products = { "phone", "tablet", "laptop", "x-box", "play-station"};
     @Override
@@ -129,6 +131,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getApplicationContext(),products[position] , Toast.LENGTH_LONG).show();
+        productString=products[position];
     }
 
     @Override
@@ -137,6 +140,11 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     }
 
     public void update(View view) {
+
+        quantityValue=Integer.parseInt(quantity.getText().toString());
+        modelShop=new MainViewModel.SellerShopDetails(radioText,productString,quantityValue);
+        modelShop.setSellerShoDetails(modelShop);
+
         Toast.makeText(this, "Updated Quantity", Toast.LENGTH_LONG).show();
     }
 
