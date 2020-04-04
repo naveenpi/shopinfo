@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
     }

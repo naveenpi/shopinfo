@@ -37,82 +37,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-<!--    <GridLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:columnCount="2"-->
-<!--        android:rowCount="1"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="350dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_row="0"-->
-<!--            android:layout_column="0"-->
-
-<!--            android:text="Details"-->
-<!--            android:background="@color/colorPrimary"-->
-<!--            android:padding="10dp"-->
-<!--            android:textSize="24sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textAlignment="center"-->
-
-<!--            >-->
-
-<!--        </TextView>-->
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/navigation"-->
-<!--            android:layout_width="70dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_row="0"-->
-<!--            android:layout_column="1"-->
-
-
-<!--            android:background="@color/colorPrimary"-->
-<!--            android:onClick="menu"-->
-<!--            android:src="@drawable/ic_menu_black_24dp"-->
-
-<!--            android:textSize="16sp" />-->
-<!--    </GridLayout>-->
-    <!--    <Button-->
-    <!--        android:id="@+id/call"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:onClick="call"-->
-    <!--        android:text="CALL"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.049"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.875" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/subscribe"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:onClick="subscribe"-->
-    <!--        android:text="SUBSCRIBE"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.372"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.875" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/details"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:onClick="details"-->
-    <!--        android:text="DETAILS"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.693"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:layout_constraintVertical_bias="0.875" />-->
 
     <Button
         android:id="@+id/call"
@@ -153,6 +77,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.344" />
+
+    <TextView
+        android:id="@+id/detailsText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Availability: YES\n Description: we sell all types"
+        android:fontFamily="sans-serif-black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

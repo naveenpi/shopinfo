@@ -20,14 +20,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Observer;
+
 public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener ,  AdapterView.OnItemSelectedListener{
 
 
 
-
+    public static SellerActivity INSTANCE;
     public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
-    //String shopNameString,categoryString,addressString,phoneNumberString;
+
     ImageView Image;
     RadioGroup yesNo;
     RadioButton radio;
@@ -36,6 +38,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
+    MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
 
     String[] products = { "phone", "tablet", "laptop", "x-box", "play-station"};
     @Override
@@ -59,24 +62,21 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         update=findViewById(R.id.update);
         discounts=findViewById(R.id.discounts);
 
+        modelSeller=modelSeller.getSellerData();
 
+        modelSeller.getSellerDataString().observe(this, new androidx.lifecycle.Observer<String>() {
+            @Override
+            public void onChanged(String s) {
 
-        //if(!SellerRegestration.getActivityInstance().getAddressString().equals(""))
-            shopName.setText(SellerRegestration.getActivityInstance().getShopNameString());
-        //else
-            //shopName.setText("Shop name");
-        //if(!SellerRegestration.getActivityInstance().getCategoryString().equals(""))
-            categoText.setText(SellerRegestration.getActivityInstance().getCategoryString());
-        //else
-            //categoText.setText("category");
-        //if(!SellerRegestration.getActivityInstance().getAddressString().equals(""))
-            adderessText.setText(SellerRegestration.getActivityInstance().getAddressString());
-        //else
-            //adderessText.setText("address");
-        //if(!SellerRegestration.getActivityInstance().phoneNumberString.equals(""))
-            phoneText.setText(SellerRegestration.getActivityInstance().getPhoneNumberString());
-        //else
-            //phoneText.setText("phone number");
+                String str=s;
+                Log.d("message ",s);
+                String[] array=str.split(",");
+                shopName.setText(array[0]);
+                categoText.setText(array[1]);
+                adderessText.setText(array[2]);
+                phoneText.setText(array[3]);
+
+            }});
 
         radioId=yesNo.getCheckedRadioButtonId();
         radio=(RadioButton) findViewById(radioId);
@@ -88,7 +88,10 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         product.setAdapter(adapter);
     }
-
+    public static SellerActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
 
     public void menu(View view) {
         PopupMenu popup= new PopupMenu(this,view);

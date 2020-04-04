@@ -11,13 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     public static final int EXTRA_KEY = 0;
     public static final int LOGIN_PAGE = 12;
     Button loginbtn, signbtn;
     EditText username, password;
+    String userNameString="",passwordString="";
 
+    MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +30,18 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
         signbtn = findViewById(R.id.signbtn);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+
+
+
     }
 
     public void login(View view) {
         if (validate()){
-            if (username.getText().toString().equals("c") && password.getText().toString().equals("c")) {
                 Log.d("username", username.getText().toString());
                 Intent toMainActivity = new Intent();
                 setResult(EXTRA_KEY, toMainActivity);
                 finish();
-            } else {
-                Log.d("invalid", password.getText().toString());
-            }
+
          }
     }
 
@@ -49,9 +52,27 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public void loginSeller(View view) {
         if(validate()) {
-            if (username.getText().toString().equals("s") && password.getText().toString().equals("s")) {
+            modelSeller=modelSeller.getSellerData();
+            modelSeller.getSellerDataString().observe(this, new androidx.lifecycle.Observer<String>() {
+                @Override
+                public void onChanged(String s) {
+
+                    String str=s;
+                    Log.d("message ",s);
+                    String[] array=str.split(",");
+                    userNameString=array[4];
+                    passwordString=array[5];
+
+                }});
+            Log.d("user name",userNameString+"hi");
+            Log.d("password",passwordString);
+
+            if(username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
                 Intent toSellerActivity = new Intent(this, SellerActivity.class);
                 startActivityForResult(toSellerActivity, LOGIN_PAGE);
+            }
+            else{
+                Toast.makeText(this,"wrong credentials",Toast.LENGTH_SHORT).show();
             }
         }
     }

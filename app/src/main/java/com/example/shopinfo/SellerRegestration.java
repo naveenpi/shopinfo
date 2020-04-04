@@ -21,7 +21,7 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
     EditText shopName, category, address, phoneNumber, userName, password, confirmPassword;
     ImageButton profilePicSeller;
     Button registerSeller;
-
+    MainViewModel.SellerData modelSeller;
     String shopNameString="",categoryString="",addressString="",phoneNumberString="",userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,34 +39,8 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
         password=findViewById(R.id.passwordSeller);
         confirmPassword=findViewById(R.id.confirmPasswordSeller);
 
-//        shopNameString=shopName.getText().toString();
-//        categoryString=category.getText().toString();
-//        addressString=address.getText().toString();
-//        phoneNumberString=phoneNumber.getText().toString();
-    }
-    public static SellerRegestration getActivityInstance()
-    {
-        //INSTANCE=new SellerRegestration();
-        return INSTANCE;
     }
 
-    public String getShopNameString()
-    {
-        return shopNameString;
-    }
-
-    public String getAddressString()
-    {
-        return addressString;
-    }
-
-    public String getCategoryString(){
-        return categoryString;
-    }
-
-    public String getPhoneNumberString(){
-        return  phoneNumberString;
-    }
     public void registerCustomer(View view) {
 
         if(shopName.getText().toString().isEmpty()){
@@ -98,7 +72,7 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
             Log.d("category", categoryString);
             addressString=address.getText().toString();
             Log.d("address", addressString);
-            phoneNumberString=address.getText().toString();
+            phoneNumberString=phoneNumber.getText().toString();
             Log.d("seller phone number", phoneNumberString);
             userNameString=userName.getText().toString();
             Log.d("Seller user name", userNameString);
@@ -108,6 +82,11 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
             Log.d("seller confirm password",confirmPasswordString);
             if(confirmPasswordString.equals(passwordString)) {
                 Toast.makeText(this, "User Successfully registered as a Seller", Toast.LENGTH_LONG).show();
+
+                modelSeller=new MainViewModel.SellerData(shopNameString,categoryString,addressString,phoneNumberString,userNameString,passwordString);
+                modelSeller.setSellerData(modelSeller);
+
+
                 ChoiceModel model= ChoiceModel.getSingleton();
                 model.add(R.drawable.ic_image_black_24dp,addressString,shopNameString,categoryString);
                 Intent i= new Intent(this, login.class);
