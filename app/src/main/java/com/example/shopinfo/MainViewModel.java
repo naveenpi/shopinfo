@@ -53,7 +53,7 @@ public class MainViewModel {
     }
 
 
-    public static MainViewModel.SellerShopDetails modelShop;
+    public static MainViewModel.SellerShopDetails modelShop=null;
     public static class SellerShopDetails{
 
         String availability="YES";
@@ -87,6 +87,7 @@ public class MainViewModel {
         }
 
         public SellerShopDetails getSellerShoDetails(){
+
             return modelShop;
         }
     }

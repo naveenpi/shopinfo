@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     Spinner city;
     RecyclerView.LayoutManager layoutManager;
     public static String citySelected="Maryville";
+
+    MainViewModel.SellerShopDetails modelShop=new MainViewModel.SellerShopDetails();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,11 +104,16 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 if (holder instanceof ChoiceAdapter.ChoiceViewHolder && choiceAdapter.getItemCount()>1) {
                     int position = holder.getAdapterPosition();
                     ChoiceModel myModel =ChoiceModel.getSingleton();
-//                    myModel.choiceList.remove(position);
-//                    choiceAdapter.notifyItemRemoved(position);
+
                     if(login.getText().equals("LOG OUT")) {
-                        Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
-                        startActivity(toDetails);
+                        modelShop=modelShop.getSellerShoDetails();
+                        if(modelShop!=null) {
+                            Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
+                            startActivity(toDetails);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Seller did not update",Toast.LENGTH_LONG).show();
+                        }
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Please login to proceed",Toast.LENGTH_LONG).show();

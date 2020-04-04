@@ -23,7 +23,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
         setContentView(R.layout.activity_details);
 
         text=findViewById(R.id.detailsText);
-        
+
         modelShop=modelShop.getSellerShoDetails();
 
         modelShop.getSellerShopDetailsString().observe(this, new androidx.lifecycle.Observer<String>() {
