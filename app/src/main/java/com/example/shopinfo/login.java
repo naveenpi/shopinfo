@@ -59,7 +59,12 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
                 }
                 else{
                     Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+
                 }
+            }
+            else{
+                Toast.makeText(this, "please register as customer to login", Toast.LENGTH_SHORT).show();
+                modelCustomer=new MainViewModel.CustomerData();
             }
          }
     }
@@ -97,6 +102,7 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
             }
             else{
                 Toast.makeText(this, "please register as seller to login", Toast.LENGTH_SHORT).show();
+                modelSeller=new MainViewModel.SellerData();
             }
         }
     }
