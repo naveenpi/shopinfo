@@ -59,6 +59,7 @@ public class MainViewModel {
         String availability="YES";
         String product="phone";
         int quantity=2;
+        String discounts="10% off on all products";
 
         public SellerShopDetails(String availability, String product, int quantity) {
             this.availability = availability;
@@ -66,14 +67,19 @@ public class MainViewModel {
             this.quantity = quantity;
         }
 
+        public SellerShopDetails(String discounts) {
+            this.discounts = discounts;
+        }
+
         public SellerShopDetails() {
         }
+
 
         private MutableLiveData<SellerShopDetails> theSellerShop=new MutableLiveData<>();
         private LiveData<String> sellerShopString = Transformations.map(theSellerShop, new Function<SellerShopDetails, String>() {
             @Override
             public String apply(SellerShopDetails data) {
-                return "Availability: "+modelShop.availability+"\n"+"product: "+modelShop.product+"\n"+"quantity: "+modelShop.quantity;
+                return "Availability: "+modelShop.availability+"\n"+"product: "+modelShop.product+"\n"+"quantity: "+modelShop.quantity+"\n"+"discounts: "+modelShop.discounts;
             }
         });
         public LiveData<String> getSellerShopDetailsString() {
@@ -90,5 +96,50 @@ public class MainViewModel {
 
             return modelShop;
         }
+    }
+
+
+
+    public static MainViewModel.CustomerData modelCustomer;
+    public static class CustomerData{
+
+        String customerFirstName="naveen";
+        String customerLastName="gajavalli";
+        String customerEmailId="fwecujw@gmail.com";
+        String customerUserName="navv";
+        String customerPassword="dcwe";
+
+        public CustomerData(String customerFirstName, String customerLastName, String customerEmailId, String customerUserName, String customerPassword) {
+            this.customerFirstName = customerFirstName;
+            this.customerLastName = customerLastName;
+            this.customerEmailId = customerEmailId;
+            this.customerUserName = customerUserName;
+            this.customerPassword = customerPassword;
+        }
+
+        public CustomerData() {
+        }
+
+        private MutableLiveData<CustomerData> theCustomerData=new MutableLiveData<>();
+        private LiveData<String> customerDataString = Transformations.map(theCustomerData, new Function<CustomerData, String>() {
+            @Override
+            public String apply(CustomerData data) {
+                return modelCustomer.customerFirstName+","+modelCustomer.customerLastName+","+modelCustomer.customerEmailId+","+modelCustomer.customerUserName+","+modelCustomer.customerPassword;
+            }
+        });
+        public LiveData<String> getCustomerDataString() {
+
+            return customerDataString;
+        }
+
+        public void setCustomerData(CustomerData data){
+            modelCustomer=data;
+            theCustomerData.setValue(data);
+        }
+
+        public CustomerData getCustomerData(){
+            return modelCustomer;
+        }
+
     }
 }

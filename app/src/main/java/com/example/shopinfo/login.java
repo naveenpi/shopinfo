@@ -2,6 +2,7 @@ package com.example.shopinfo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +20,9 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
     Button loginbtn, signbtn;
     EditText username, password;
     String userNameString="",passwordString="";
-
+    String customerUserName="",customerPasswordString="";
     MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
+    MainViewModel.CustomerData modelCustomer=new MainViewModel.CustomerData();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +39,28 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public void login(View view) {
         if (validate()){
-                Log.d("username", username.getText().toString());
-                Intent toMainActivity = new Intent();
-                setResult(EXTRA_KEY, toMainActivity);
-                finish();
-
+            modelCustomer=modelCustomer.getCustomerData();
+            if(modelCustomer!=null) {
+                modelCustomer.getCustomerDataString().observe(this, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        String str=s;
+                        Log.d("customer message ", s);
+                        String[] array=str.split(",");
+                        customerUserName=array[3];
+                        customerPasswordString=array[4];
+                    }
+                });
+                if(username.getText().toString().equals(customerUserName) && password.getText().toString().equals(customerPasswordString)) {
+                    Log.d("username", username.getText().toString());
+                    Intent toMainActivity = new Intent();
+                    setResult(EXTRA_KEY, toMainActivity);
+                    finish();
+                }
+                else{
+                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+                }
+            }
          }
     }
 
@@ -53,26 +72,31 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
     public void loginSeller(View view) {
         if(validate()) {
             modelSeller=modelSeller.getSellerData();
-            modelSeller.getSellerDataString().observe(this, new androidx.lifecycle.Observer<String>() {
-                @Override
-                public void onChanged(String s) {
+            if(modelSeller!=null) {
+                modelSeller.getSellerDataString().observe(this, new androidx.lifecycle.Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
 
-                    String str=s;
-                    Log.d("message ",s);
-                    String[] array=str.split(",");
-                    userNameString=array[4];
-                    passwordString=array[5];
+                        String str = s;
+                        Log.d("seller message ", s);
+                        String[] array = str.split(",");
+                        userNameString = array[4];
+                        passwordString = array[5];
 
-                }});
-            Log.d("user name",userNameString+"hi");
-            Log.d("password",passwordString);
+                    }
+                });
+                Log.d("user name", userNameString + "hi");
+                Log.d("password", passwordString);
 
-            if(username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
-                Intent toSellerActivity = new Intent(this, SellerActivity.class);
-                startActivityForResult(toSellerActivity, LOGIN_PAGE);
+                if (username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
+                    Intent toSellerActivity = new Intent(this, SellerActivity.class);
+                    startActivityForResult(toSellerActivity, LOGIN_PAGE);
+                } else {
+                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+                }
             }
             else{
-                Toast.makeText(this,"wrong credentials",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "please register as seller to login", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -127,5 +151,11 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
             valid=false;
         }
         return valid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"please use navigation to go to home",Toast.LENGTH_SHORT).show();
+
     }
 }

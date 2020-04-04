@@ -26,7 +26,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
 
 
 
-    public static SellerActivity INSTANCE;
+
     public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
     int quantityValue;
@@ -34,11 +34,12 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     RadioGroup yesNo;
     RadioButton radio;
     int radioId;
-    String radioText;
+    String radioText,discountsText,sellerMeassage;
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
     MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
+
     MainViewModel.SellerShopDetails modelShop;
     String productString;
 
@@ -90,10 +91,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         product.setAdapter(adapter);
     }
-    public static SellerActivity getActivityInstance()
-    {
-        return INSTANCE;
-    }
+
 
     public void menu(View view) {
         PopupMenu popup= new PopupMenu(this,view);
@@ -153,6 +151,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     }
 
     public void toDiscount(View view) {
+        discountsText=discountEditText.getText().toString();
+        modelShop=new MainViewModel.SellerShopDetails(discountsText);
+        modelShop.setSellerShoDetails(modelShop);
         Toast.makeText(this, "Discount information updated", Toast.LENGTH_LONG).show();
     }
 
@@ -161,9 +162,5 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         startActivity(toEditSeller);
     }
 
-//    public void updateDetails(View view) {
-//
-//        ChoiceModel model= ChoiceModel.getSingleton();
-//        model.add(R.drawable.ic_image_black_24dp,"hi","kansas");
-//    }
+
 }

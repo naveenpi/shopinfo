@@ -19,6 +19,7 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
     ImageButton profilePic;
     Button register;
     String lastNameString,firstNameString,mailIdString, userNameString,passwordString, confirmPasswordString;
+    MainViewModel.CustomerData modelCustomer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,9 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
             confirmPasswordString=confirmPassword.getText().toString();
             Log.d("Cust confirm password",confirmPasswordString);
             if(confirmPasswordString.equals(passwordString)) {
+
+                modelCustomer=new MainViewModel.CustomerData(firstNameString,lastNameString,mailIdString,userNameString,passwordString);
+                modelCustomer.setCustomerData(modelCustomer);
                 Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this, login.class);
                 startActivity(i);

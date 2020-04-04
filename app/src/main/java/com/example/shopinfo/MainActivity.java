@@ -74,6 +74,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             Intent toEditCustomerActivity = new Intent(this, EditCustomerActivity.class);
             startActivity(toEditCustomerActivity);
         }
+        else if(login.getText().toString().equals("LOGIN")){
+            editCustomer.setVisibility(View.INVISIBLE);
+            editCustomer.setClickable(false);
+            Toast.makeText(this,"Please login to edit",LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -156,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
             Intent login = new Intent(this, com.example.shopinfo.login.class);
             startActivityForResult(login, HOME_PAGE_REQUEST);
+
 
         }
         else if(login.getText().toString().equals("LOG OUT")){
