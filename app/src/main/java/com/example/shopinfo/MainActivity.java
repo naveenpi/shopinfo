@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         }
                         else{
                             Toast.makeText(getApplicationContext(),"Seller did not update",Toast.LENGTH_LONG).show();
+                            modelShop=new MainViewModel.SellerShopDetails();
                         }
                     }
                     else{
