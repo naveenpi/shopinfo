@@ -66,9 +66,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         messageEditText=findViewById(R.id.message);
         discountEditText=findViewById(R.id.discountInfo);
         quantity=findViewById(R.id.quantity);
-        subscribers=findViewById(R.id.sendToSubscribers);
+        //subscribers=findViewById(R.id.sendToSubscribers);
         update=findViewById(R.id.update);
-        discounts=findViewById(R.id.discounts);
+        //discounts=findViewById(R.id.discounts);
 
         modelSeller=modelSeller.getSellerData();
 

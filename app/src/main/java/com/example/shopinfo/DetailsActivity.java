@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     TextView text;
+    String s="";
     MainViewModel.SellerShopDetails modelShop=new MainViewModel.SellerShopDetails();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Intent toDetails=getIntent();
-        String s=toDetails.getStringExtra("description");
+        s=toDetails.getStringExtra("description");
         text=findViewById(R.id.detailsText);
         text.setText(s);
 //
@@ -67,10 +68,16 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
         }
     }
 
-    public void call(View view) {
-        Toast.makeText(this,"Making call",Toast.LENGTH_LONG).show();
+    public void callInDetailsActivity(View view) {
+        Toast.makeText(this,"Making call in details activity",Toast.LENGTH_LONG).show();
         Intent toPhone=new Intent(Intent.ACTION_DIAL);
-        toPhone.setData(Uri.parse("tel:2345671089"));
+        String[] stringArray=s.split("\n");
+        Log.d("length in details",stringArray.length+"");
+        Log.d("string array",stringArray[0]+"li");
+        String phone=stringArray[stringArray.length-1];
+        Log.d("phone details activity",phone);
+        phone="tel:"+phone;
+        toPhone.setData(Uri.parse(phone));
         startActivity(toPhone);
     }
 
