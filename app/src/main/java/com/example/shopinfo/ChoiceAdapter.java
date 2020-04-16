@@ -38,7 +38,7 @@ public class ChoiceAdapter extends RecyclerView.Adapter<ChoiceAdapter.ChoiceView
 //            text.setBackgroundResource(R.color.colorAccent);
 //            text.setText(choiceModel.choiceList.get(position).choice);
         choiceName.setText(choiceModel.choiceList.get(position).name);
-        choiceDescription.setText(choiceModel.choiceList.get(position).description);
+        choiceDescription.setText(choiceModel.choiceList.get(position).category);
         image.setImageResource(choiceModel.choiceList.get(position).image);
 //        }
 //        else{

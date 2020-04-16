@@ -95,6 +95,8 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
                 if (username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
                     Intent toSellerActivity = new Intent(this, SellerActivity.class);
+                    toSellerActivity.putExtra("username",userNameString);
+                    toSellerActivity.putExtra("password",passwordString);
                     startActivityForResult(toSellerActivity, LOGIN_PAGE);
                 } else {
                     Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();

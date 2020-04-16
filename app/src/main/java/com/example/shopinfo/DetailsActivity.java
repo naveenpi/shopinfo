@@ -21,21 +21,23 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-
+        Intent toDetails=getIntent();
+        String s=toDetails.getStringExtra("description");
         text=findViewById(R.id.detailsText);
-
-        modelShop=modelShop.getSellerShoDetails();
-
-        modelShop.getSellerShopDetailsString().observe(this, new androidx.lifecycle.Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-
-
-                Log.d("message ",s);
-
-                text.setText(s);
-
-            }});
+        text.setText(s);
+//
+//        modelShop=modelShop.getSellerShoDetails();
+//
+//        modelShop.getSellerShopDetailsString().observe(this, new androidx.lifecycle.Observer<String>() {
+//            @Override
+//            public void onChanged(String s) {
+//
+//
+//                Log.d("message ",s);
+//
+//                text.setText(s);
+//
+//            }});
     }
 
     public void menu(View view) {

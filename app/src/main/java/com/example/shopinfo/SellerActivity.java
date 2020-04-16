@@ -34,7 +34,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     RadioGroup yesNo;
     RadioButton radio;
     int radioId;
-    String radioText,discountsText,sellerMeassage;
+    String radioText,discountsText,sellerMeassage,userNameString,passwordString;
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
@@ -51,6 +51,11 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller);
 
+        Intent toSellerActivity=getIntent();
+        userNameString=toSellerActivity.getStringExtra("username");
+        Log.d("username seller",userNameString);
+        passwordString=toSellerActivity.getStringExtra("password");
+        Log.d("password seller",passwordString);
         shopName=findViewById(R.id.shopNameText);
         categoText=findViewById(R.id.categoryText);
         adderessText=findViewById(R.id.addressText);
@@ -142,8 +147,13 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         quantityValue=Integer.parseInt(quantity.getText().toString());
         modelShop=new MainViewModel.SellerShopDetails(radioText,productString,quantityValue);
         modelShop.setSellerShoDetails(modelShop);
+        discountsText=discountEditText.getText().toString();
+        modelShop=new MainViewModel.SellerShopDetails(discountsText);
+        modelShop.setSellerShoDetails(modelShop);
 
-        Toast.makeText(this, "Updated Quantity", Toast.LENGTH_LONG).show();
+        ChoiceModel myModel=ChoiceModel.getSingleton();
+        myModel.addShopDetails(userNameString,passwordString,productString,quantityValue,discountsText);
+        Toast.makeText(this, "Updated Quantity and discount", Toast.LENGTH_LONG).show();
     }
 
     public void toSubscribers(View view) {

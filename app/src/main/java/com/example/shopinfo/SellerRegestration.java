@@ -88,7 +88,7 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
 
 
                 ChoiceModel model= ChoiceModel.getSingleton();
-                model.add(R.drawable.ic_image_black_24dp,addressString,shopNameString,categoryString);
+                model.add(R.drawable.ic_image_black_24dp,addressString,shopNameString,categoryString,phoneNumberString,userNameString,passwordString);
                 Intent i= new Intent(this, login.class);
                 startActivity(i);
             }

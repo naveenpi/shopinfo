@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             View view = choiceRV.findChildViewUnder(e.getX(), e.getY());
             if (view != null) {
                 RecyclerView.ViewHolder holder = choiceRV.getChildViewHolder(view);
-                if (holder instanceof ChoiceAdapter.ChoiceViewHolder && choiceAdapter.getItemCount()>1) {
+                if (holder instanceof ChoiceAdapter.ChoiceViewHolder /*&& choiceAdapter.getItemCount()>1*/) {
                     int position = holder.getAdapterPosition();
                     ChoiceModel myModel =ChoiceModel.getSingleton();
 
@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         modelShop=modelShop.getSellerShoDetails();
                         if(modelShop!=null) {
                             Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
+                            Log.d("to details activity",myModel.choiceList.get(position).phoneNumberString);
+                            Log.d("position",position+"");
+                            String str=myModel.choiceList.get(position).shopDetails+"\n"+myModel.choiceList.get(position).phoneNumberString;
+                            toDetails.putExtra("description",str);
                             startActivity(toDetails);
                         }
                         else{
