@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SellerRegestration extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
 
@@ -22,7 +25,8 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
     ImageButton profilePicSeller;
     Button registerSeller;
     MainViewModel.SellerData modelSeller;
-    String shopNameString="",categoryString="",addressString="",phoneNumberString="",userNameString,passwordString, confirmPasswordString;
+    static String phoneNumberString="";
+    String shopNameString="",categoryString="",addressString=""/*,phoneNumberString=""*/,userNameString,passwordString, confirmPasswordString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,6 +90,11 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
                 modelSeller=new MainViewModel.SellerData(shopNameString,categoryString,addressString,phoneNumberString,userNameString,passwordString);
                 modelSeller.setSellerData(modelSeller);
 
+                SellerModelClass sm=new SellerModelClass(addressString,categoryString,passwordString,phoneNumberString,shopNameString,userNameString);
+
+                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                DatabaseReference myRef=database.getReference("seller");
+                myRef.setValue(sm);
 
                 ChoiceModel model= ChoiceModel.getSingleton();
                 model.add(R.drawable.ic_image_black_24dp,addressString,shopNameString,categoryString,phoneNumberString,userNameString,passwordString);

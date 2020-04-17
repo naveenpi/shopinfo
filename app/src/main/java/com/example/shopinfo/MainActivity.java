@@ -1,5 +1,6 @@
 package com.example.shopinfo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
@@ -22,6 +23,12 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -114,12 +121,31 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     if(login.getText().equals("LOG OUT")) {
                         modelShop=modelShop.getSellerShoDetails();
                         if(modelShop!=null) {
-                            Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
+
                             Log.d("to details activity",myModel.choiceList.get(position).phoneNumberString);
                             Log.d("position",position+"");
-                            String str=myModel.choiceList.get(position).shopDetails+"\n"+myModel.choiceList.get(position).phoneNumberString;
-                            toDetails.putExtra("description",str);
-                            startActivity(toDetails);
+                            String str=myModel.choiceList.get(position).shopDetails+"\n phone number: "+myModel.choiceList.get(position).phoneNumberString;
+
+                            DatabaseReference DetailsReference= FirebaseDatabase.getInstance().getReference("Shop");
+                            DetailsReference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                    String s="Available:\n"+dataSnapshot.child("availability").getValue(String.class)+"\n";
+//                                    s+="products:\n"+dataSnapshot.child("product").getValue(String.class);
+//                                    s+="Discount:"+dataSnapshot.child("discount").getValue(String.class)+"\n";
+//                                    s+="Phone Number: "+dataSnapshot.child("phone").getValue(String.class);
+                                    String s=dataSnapshot.getValue(String.class);
+                                    Intent toDetails = new Intent(MainActivity.this, DetailsActivity.class);
+                                    toDetails.putExtra("description",s);
+                                    startActivity(toDetails);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
                         }
                         else{
                             Toast.makeText(getApplicationContext(),"Seller did not update",Toast.LENGTH_LONG).show();

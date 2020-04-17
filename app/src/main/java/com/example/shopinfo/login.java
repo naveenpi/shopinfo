@@ -1,5 +1,6 @@
 package com.example.shopinfo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -13,6 +14,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     public static final int EXTRA_KEY = 0;
@@ -39,7 +47,10 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public void login(View view) {
         if (validate()){
+            final String userEnteredUsername=username.getText().toString();
+            final String userEnteredPassword=password.getText().toString();
             modelCustomer=modelCustomer.getCustomerData();
+            Log.d("test login","hi");
             if(modelCustomer!=null) {
                 modelCustomer.getCustomerDataString().observe(this, new Observer<String>() {
                     @Override
@@ -51,16 +62,48 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
                         customerPasswordString=array[4];
                     }
                 });
-                if(username.getText().toString().equals(customerUserName) && password.getText().toString().equals(customerPasswordString)) {
-                    Log.d("username", username.getText().toString());
-                    Intent toMainActivity = new Intent();
-                    setResult(EXTRA_KEY, toMainActivity);
-                    finish();
-                }
-                else{
-                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+                //start
+                DatabaseReference customerReference= FirebaseDatabase.getInstance().getReference("customers");
 
-                }
+                customerReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+
+                            String passwordFromDB=dataSnapshot.child("passwordString").getValue(String.class);
+                            Log.d("password firebase",passwordFromDB+" ji");
+                            if(passwordFromDB.equals(userEnteredPassword)){
+
+                                username.setError(null);
+                                Intent toMainActivity = new Intent();
+                                setResult(EXTRA_KEY, toMainActivity);
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "wrong credentials", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                //end
+                //changed here
+//                if(username.getText().toString().equals(customerUserName) && password.getText().toString().equals(customerPasswordString)) {
+//                    Log.d("username", username.getText().toString());
+//                    Intent toMainActivity = new Intent();
+//                    setResult(EXTRA_KEY, toMainActivity);
+//                    finish();
+//                }
+//                else{
+//                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+//
+//                }
             }
             else{
                 Toast.makeText(this, "please register as customer to login", Toast.LENGTH_SHORT).show();
@@ -76,6 +119,8 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
     public void loginSeller(View view) {
         if(validate()) {
+            final String userEnteredUsername=username.getText().toString();
+            final String userEnteredPassword=password.getText().toString();
             modelSeller=modelSeller.getSellerData();
             if(modelSeller!=null) {
                 modelSeller.getSellerDataString().observe(this, new androidx.lifecycle.Observer<String>() {
@@ -90,17 +135,49 @@ public class login extends AppCompatActivity implements PopupMenu.OnMenuItemClic
 
                     }
                 });
+
+                //start
+                DatabaseReference sellerReference= FirebaseDatabase.getInstance().getReference("seller");
+
+                sellerReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+
+                            String passwordFromDB=dataSnapshot.child("passwordString").getValue(String.class);
+                            Log.d("password firebase",passwordFromDB+" ji");
+                            if(passwordFromDB.equals(userEnteredPassword)){
+
+                                username.setError(null);
+                                Intent toSellerActivity = new Intent(getApplicationContext(), SellerActivity.class);
+                                toSellerActivity.putExtra("username",userNameString);
+                                toSellerActivity.putExtra("password",passwordString);
+                                startActivityForResult(toSellerActivity, LOGIN_PAGE);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "wrong credentials", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                //end
                 Log.d("user name", userNameString + "hi");
                 Log.d("password", passwordString);
 
-                if (username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
-                    Intent toSellerActivity = new Intent(this, SellerActivity.class);
-                    toSellerActivity.putExtra("username",userNameString);
-                    toSellerActivity.putExtra("password",passwordString);
-                    startActivityForResult(toSellerActivity, LOGIN_PAGE);
-                } else {
-                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
-                }
+//                if (username.getText().toString().equals(userNameString) && password.getText().toString().equals(passwordString)) {
+//                    Intent toSellerActivity = new Intent(this, SellerActivity.class);
+//                    toSellerActivity.putExtra("username",userNameString);
+//                    toSellerActivity.putExtra("password",passwordString);
+//                    startActivityForResult(toSellerActivity, LOGIN_PAGE);
+//                } else {
+//                    Toast.makeText(this, "wrong credentials", Toast.LENGTH_SHORT).show();
+//                }
             }
             else{
                 Toast.makeText(this, "please register as seller to login", Toast.LENGTH_SHORT).show();

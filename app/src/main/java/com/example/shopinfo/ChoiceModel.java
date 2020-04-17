@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.lifecycle.LifecycleOwner;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class ChoiceModel {
@@ -103,19 +104,14 @@ public class ChoiceModel {
     }
     public void addShopDetails(String userNameString, String passwordString, String productString, int quantityValue, String discountsText) {
 
-        Iterator<ChoiceInfo> iterator=choiceList.iterator();
-        int i=0;
-        while(iterator.hasNext()){
-
-            ChoiceInfo choiceInfo = iterator.next();
+        for(int i=0;i<choiceList.size();){
             Log.d("size",choiceList.size()+"");
-            Log.d("all the details",choiceInfo.toString());
-            Log.d("getUserNameString()",choiceInfo.getUserNameString());
-            Log.d("UserNameString()",userNameString);
-            if(choiceInfo.getUserNameString().equals(userNameString) && choiceInfo.getPasswordString().equals(passwordString)){
-                choiceInfo.shopDetails=productString+": "+quantityValue+"\n"+discountsText;
-                choiceList.add(i,choiceInfo);
-                Log.d("all the details 2",choiceInfo.toString());
+            ChoiceInfo choiceInfo=choiceList.get(i);
+            if (choiceInfo.getUserNameString().equals(userNameString) && choiceInfo.getPasswordString().equals(passwordString)) {
+                choiceInfo.shopDetails = "products :\n"+productString  + "\n" + "Discounts: "+discountsText;
+                choiceList.set(i, choiceInfo);
+                Log.d("all the details 2", choiceInfo.category);
+                //break;
             }
             i++;
         }

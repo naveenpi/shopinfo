@@ -20,12 +20,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Observer;
 
 public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener ,  AdapterView.OnItemSelectedListener{
 
 
-
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     public static final int EXTRA_LOGIN_KEY=1;
     TextView shopName, categoText, adderessText, phoneText;
@@ -34,14 +38,14 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     RadioGroup yesNo;
     RadioButton radio;
     int radioId;
-    String radioText,discountsText,sellerMeassage,userNameString,passwordString;
+    String radioText="",discountsText,userNameString,passwordString;
     Spinner product;
     EditText messageEditText, discountEditText, quantity;
     Button subscribers, discounts, update;
     MainViewModel.SellerData modelSeller=new MainViewModel.SellerData();
-
+    SellerRegestration sr;
     MainViewModel.SellerShopDetails modelShop;
-    String productString;
+    String productString="";
 
     String[] products = { "phone", "tablet", "laptop", "x-box", "play-station"};
     @Override
@@ -134,7 +138,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getApplicationContext(),products[position] , Toast.LENGTH_LONG).show();
-        productString=products[position];
+        productString+=products[position];
     }
 
     @Override
@@ -145,11 +149,19 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     public void update(View view) {
 
         quantityValue=Integer.parseInt(quantity.getText().toString());
-        modelShop=new MainViewModel.SellerShopDetails(radioText,productString,quantityValue);
+        productString+=": "+quantityValue+"\n";
+        modelShop=new MainViewModel.SellerShopDetails(radioText,productString/*,quantityValue*/);
         modelShop.setSellerShoDetails(modelShop);
         discountsText=discountEditText.getText().toString();
         modelShop=new MainViewModel.SellerShopDetails(discountsText);
         modelShop.setSellerShoDetails(modelShop);
+
+        database=FirebaseDatabase.getInstance();
+        myRef=database.getInstance().getReference("Shop");
+        Log.d("phone seller",sr.phoneNumberString.trim());
+        Log.d("radio element",radioText);
+        //SellerShopModelClass ssm=new SellerShopModelClass(radioText,discountsText,sr.phoneNumberString.trim(),productString);
+        myRef.setValue(radioText+" "+sr.phoneNumberString.trim()+" "+productString+" "+discountsText);
 
         ChoiceModel myModel=ChoiceModel.getSingleton();
         myModel.addShopDetails(userNameString,passwordString,productString,quantityValue,discountsText);

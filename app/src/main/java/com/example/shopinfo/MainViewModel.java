@@ -61,9 +61,9 @@ public class MainViewModel {
         int quantity=2;
         String discounts="10% off on all products";
 
-        public SellerShopDetails(String availability, String product, int quantity) {
+        public SellerShopDetails(String availability, String product/*,int quantity*/) {
             this.availability = availability;
-            this.product = product;
+            //this.product = product;
             this.quantity = quantity;
         }
 
@@ -79,7 +79,7 @@ public class MainViewModel {
         private LiveData<String> sellerShopString = Transformations.map(theSellerShop, new Function<SellerShopDetails, String>() {
             @Override
             public String apply(SellerShopDetails data) {
-                return "Availability: "+modelShop.availability+"\n"+"product: "+modelShop.product+"\n"+"quantity: "+modelShop.quantity+"\n"+"discounts: "+modelShop.discounts;
+                return "Availability: "+modelShop.availability+"\n"+"product: "+modelShop.product+"\n"/*+"quantity: "+modelShop.quantity+"\n"*/+"discounts: "+modelShop.discounts;
             }
         });
         public LiveData<String> getSellerShopDetailsString() {

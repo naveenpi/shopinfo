@@ -14,7 +14,14 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CustomerRegestration extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+
+
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     EditText firstName, lastName, mailId, userName, password, confirmPassword;
     ImageButton profilePic;
     Button register;
@@ -74,6 +81,14 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
 
                 modelCustomer=new MainViewModel.CustomerData(firstNameString,lastNameString,mailIdString,userNameString,passwordString);
                 modelCustomer.setCustomerData(modelCustomer);
+
+                CustomerModelClass cm=new CustomerModelClass(mailIdString,passwordString,userNameString,firstNameString,lastNameString);
+                database = FirebaseDatabase.getInstance();
+                myRef = database.getReference("customers");
+                myRef.setValue(cm);
+
+
+
                 Toast.makeText(this, "User Successfully registered as a customer", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this, login.class);
                 startActivity(i);

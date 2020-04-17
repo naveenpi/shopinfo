@@ -16,6 +16,7 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
 
     TextView text;
     String s="";
+    String detailsArray[];
     MainViewModel.SellerShopDetails modelShop=new MainViewModel.SellerShopDetails();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,10 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
         setContentView(R.layout.activity_details);
         Intent toDetails=getIntent();
         s=toDetails.getStringExtra("description");
+        detailsArray=s.split(" ");
+        String toPrint="Available: "+detailsArray[0]+"\n"+"Phone number: "+detailsArray[1]+"\n"+"products: "+detailsArray[2]+"\n"+"Discounts: "+detailsArray[3];
         text=findViewById(R.id.detailsText);
-        text.setText(s);
+        text.setText(toPrint);
 //
 //        modelShop=modelShop.getSellerShoDetails();
 //
@@ -70,14 +73,14 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
 
     public void callInDetailsActivity(View view) {
         Toast.makeText(this,"Making call in details activity",Toast.LENGTH_LONG).show();
-        Intent toPhone=new Intent(Intent.ACTION_DIAL);
-        String[] stringArray=s.split("\n");
-        Log.d("length in details",stringArray.length+"");
-        Log.d("string array",stringArray[0]+"li");
-        String phone=stringArray[stringArray.length-1];
+
+
+        String phone="";
         Log.d("phone details activity",phone);
+        phone=detailsArray[1];
         phone="tel:"+phone;
-        toPhone.setData(Uri.parse(phone));
+        Intent toPhone=new Intent(Intent.ACTION_DIAL,Uri.parse(phone));
+        //toPhone.setData(Uri.parse(phone.toString()));
         startActivity(toPhone);
     }
 
