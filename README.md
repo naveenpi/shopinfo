@@ -34,3 +34,14 @@ Test Credentials: There is no need of test credentials, You have to create two a
    select the city as given in the seller regestration.
 9. On selecting the city user can see the shops listed under that city. Click on the shop to view the details.
 10. There is a call button at the bottom. On clicking the call button the user is directed to a call activity where he can call the     seller.
+
+## Supported Devices.
+1. Android 5.0 (API 21): Lollipop: minSdkVersion.
+2. Android 5.1 (API 22): Lollipop
+3. Android 6.0 (API 23): MarshMallow
+4. Android 7.0 (API 24): Nougat
+5. Android 7.1 (API 25): Nougat
+6. Android 8.0 (API 26): Oreo
+7. Android 8.1.0 (API 27): Oreo
+8. Android 9.0 (API 28): Pie
+9. Android 10.0 (API 29): targetSdkVersion,compileSdkVersion
