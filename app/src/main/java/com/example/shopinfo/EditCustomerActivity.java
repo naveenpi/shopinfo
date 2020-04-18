@@ -44,12 +44,12 @@ public class EditCustomerActivity extends AppCompatActivity implements PopupMenu
                 return true;
         }
     }
-
-    public void profilePicCustomer(View view) {
-        Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivity(takePictureIntent);
-    }
+//
+//    public void profilePicCustomer(View view) {
+//        Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivity(takePictureIntent);
+//    }
 
     public void updateCustomerDetails(View view) {
         Toast.makeText(this, "User Successfully updated the details", Toast.LENGTH_LONG).show();
