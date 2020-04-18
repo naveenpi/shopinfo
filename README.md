@@ -48,4 +48,4 @@ Test Credentials: There is no need of test credentials, You have to create two a
 
 ## APK File:
 The APK file is generated for the application. In the project it can be found in the following path:
-path: \app\build\outputs\apk\debug.
+- path: \app\build\outputs\apk\debug.
