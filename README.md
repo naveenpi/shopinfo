@@ -18,3 +18,6 @@ This app serves a very helpful communication between the customers and the Selle
 6.	Customer can call the sellers for further information through the app.
 
 So with this app all the above issues of the customers are resolved by providing a “user-friendly and “easy to navigate “app.
+
+## Application Information:
+Test Credentials: There is no need of test credentials, You have to create two accounts namely for seller and customer.
