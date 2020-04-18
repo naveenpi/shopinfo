@@ -23,7 +23,7 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
     FirebaseDatabase database;
     DatabaseReference myRef;
     EditText firstName, lastName, mailId, userName, password, confirmPassword;
-    ImageButton profilePic;
+    //ImageButton profilePic;
     Button register;
     String lastNameString,firstNameString,mailIdString, userNameString,passwordString, confirmPasswordString;
     MainViewModel.CustomerData modelCustomer;
@@ -38,7 +38,7 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
         password=findViewById(R.id.editText5);
         confirmPassword=findViewById(R.id.editText6);
 
-        profilePic=findViewById(R.id.profile);
+        //profilePic=findViewById(R.id.profile);
         register=findViewById(R.id.button);
 
         lastNameString=lastName.getText().toString();
@@ -99,11 +99,11 @@ public class CustomerRegestration extends AppCompatActivity implements PopupMenu
         }
     }
 
-    public void profilePicCustomer(View view) {
-        Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivity(takePictureIntent);
-    }
+//    public void profilePicCustomer(View view) {
+//        Toast.makeText(this, "Upload profile picture of customer", Toast.LENGTH_LONG).show();
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivity(takePictureIntent);
+//    }
 
     public void menu(View view) {
         PopupMenu popup= new PopupMenu(this,view);
