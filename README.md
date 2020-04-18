@@ -14,7 +14,6 @@ This app serves a very helpful communication between the customers and the Selle
 2.	Customers can search the shops based on city and categoery.
 3.	If the product is available and if the customers want to make a bulk purchase, Is there sufficient quantity available at the store?
 4.	Any discounts available on the products.
-5.	Sellers can send email’s to the customers who are subscribed to their shops.
 6.	Customer can call the sellers for further information through the app.
 
 So with this app all the above issues of the customers are resolved by providing a “user-friendly and “easy to navigate “app.
@@ -45,3 +44,8 @@ Test Credentials: There is no need of test credentials, You have to create two a
 7. Android 8.1.0 (API 27): Oreo
 8. Android 9.0 (API 28): Pie
 9. Android 10.0 (API 29): targetSdkVersion,compileSdkVersion
+
+
+## APK File:
+The APK file is generated for the application. In the project it can be found in the following path:
+path: \app\build\outputs\apk\debug.
