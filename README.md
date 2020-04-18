@@ -21,7 +21,7 @@ So with this app all the above issues of the customers are resolved by providing
 ## Application Information:
 Test Credentials: There is no need of test credentials, You have to create two accounts namely for seller and customer.
 
-## Sequence Information:
+## Sequence of Execution:
 1. When the app launches main activity appears. There is a login button on the top near the menu.
 2. On Clicking the login button login activity appears.
 3. Click sign up button. On clicking sign up button user is directed to regestration page.
