@@ -22,7 +22,7 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
 
     public static SellerRegestration INSTANCE;
     EditText shopName, category, address, phoneNumber, userName, password, confirmPassword;
-    ImageButton profilePicSeller;
+    //ImageButton profilePicSeller;
     Button registerSeller;
     MainViewModel.SellerData modelSeller;
     static String phoneNumberString="";
@@ -109,11 +109,11 @@ public class SellerRegestration extends AppCompatActivity implements PopupMenu.O
     }
 
 
-    public void profilePicSeller(View view) {
-        Toast.makeText(this, "Upload profile picture of seller", Toast.LENGTH_LONG).show();
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivity(takePictureIntent);
-    }
+//    public void profilePicSeller(View view) {
+//        Toast.makeText(this, "Upload profile picture of seller", Toast.LENGTH_LONG).show();
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivity(takePictureIntent);
+//    }
 
     public void menu(View view) {
         PopupMenu popup= new PopupMenu(this,view);
