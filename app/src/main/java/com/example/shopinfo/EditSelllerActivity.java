@@ -46,11 +46,11 @@ public class EditSelllerActivity extends AppCompatActivity implements PopupMenu.
         }
     }
 
-    public void profilePicSeller(View view) {
-        Toast.makeText(this, "Upload profile picture of seller", Toast.LENGTH_LONG).show();
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivity(takePictureIntent);
-    }
+//    public void profilePicSeller(View view) {
+//        Toast.makeText(this, "Upload profile picture of seller", Toast.LENGTH_LONG).show();
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivity(takePictureIntent);
+//    }
 
     public void updateSeller(View view) {
         Toast.makeText(this, "User Successfully updated the information", Toast.LENGTH_LONG).show();
