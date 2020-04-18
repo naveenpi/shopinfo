@@ -258,18 +258,18 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.833" />-->
 
-    <Button
-        android:id="@+id/editSeller"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Seller details"
-        android:onClick="editSeller"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/update"
-        app:layout_constraintVertical_bias="0.53" />
+<!--    <Button-->
+<!--        android:id="@+id/editSeller"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Edit Seller details"-->
+<!--        android:onClick="editSeller"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.052"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/update"-->
+<!--        app:layout_constraintVertical_bias="0.53" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
