@@ -161,7 +161,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
         Log.d("phone seller",sr.phoneNumberString.trim());
         Log.d("radio element",radioText);
         //SellerShopModelClass ssm=new SellerShopModelClass(radioText,discountsText,sr.phoneNumberString.trim(),productString);
-        myRef.setValue(radioText+" "+sr.phoneNumberString.trim()+" "+productString+" "+discountsText);
+        myRef.setValue(radioText+"\n"+sr.phoneNumberString.trim()+"\n"+productString+"\n"+discountsText);
 
         ChoiceModel myModel=ChoiceModel.getSingleton();
         myModel.addShopDetails(userNameString,passwordString,productString,quantityValue,discountsText);

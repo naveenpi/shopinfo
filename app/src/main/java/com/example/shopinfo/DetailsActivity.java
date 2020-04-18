@@ -25,8 +25,10 @@ public class DetailsActivity extends AppCompatActivity implements PopupMenu.OnMe
         setContentView(R.layout.activity_details);
         Intent toDetails=getIntent();
         s=toDetails.getStringExtra("description");
-        detailsArray=s.split(" ");
-        String toPrint="Available: "+detailsArray[0]+"\n"+"Phone number: "+detailsArray[1]+"\n"+"products: "+detailsArray[2]+"\n"+"Discounts: "+detailsArray[3];
+        Log.d("total details",s);
+        detailsArray=s.split("\n");
+        Log.d("discount in details",detailsArray[4]+"discount");
+        String toPrint="Available: "+detailsArray[0]+"\n"+"Phone number: "+detailsArray[1]+"\n"+"products: "+detailsArray[2]+"\n"+"Discounts: "+detailsArray[4];
         text=findViewById(R.id.detailsText);
         text.setText(toPrint);
 //
