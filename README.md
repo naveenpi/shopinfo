@@ -21,3 +21,16 @@ So with this app all the above issues of the customers are resolved by providing
 
 ## Application Information:
 Test Credentials: There is no need of test credentials, You have to create two accounts namely for seller and customer.
+
+## Sequence Information:
+1. When the app launches main activity appears. There is a login button on the top near the menu.
+2. On Clicking the login button login activity appears.
+3. Click sign up button. On clicking sign up button user is directed to regestration page.
+4. Click the Seller regestration button. On clicking seller regestration button user is directed to seller regestration page. Here the      user has to enter the details. In this page the address field should be given as "maryville" or "kansas". After filling all the          fields click the regester button. On clicking the regester button the field values are updated in the firebase database and the user    will be directed to login page.
+5. Now login as a seller with the above regestration details. On logging in as a seller the user will be directed to SellerActivity        page. Here the user can update fields like availability, products, quantity, Discount message. Click the update button to update the    fields into the database. Now logout of the sellerActivity page. User will be directed to login page.
+6. Click sign up button. On clicking sign up button user is directed to regestration page.
+7. Click the customer regestration button. On clicking customer regestration button user is directed to customer regestration page. Here    the user has to enter the details. After filling all the fields click the regester button. On clicking the regester button the field    values are updated in the firebase database and the user will be directed to login page.
+8. Now login as a customer with the above regestration details. On logging as a customer user can see a spinner to filter the cities.
+   select the city as given in the seller regestration.
+9. On selecting the city user can see the shops listed under that city. Click on the shop to view the details.
+10. There is a call button at the bottom. On clicking the call button the user is directed to a call activity where he can call the     seller.
