@@ -91,8 +91,8 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
             }});
 
         radioId=yesNo.getCheckedRadioButtonId();
-        radio=(RadioButton) findViewById(radioId);
-        radioText=radio.getText().toString();
+
+        //radioText=radio.getText().toString();
         Log.d("radio",radioText);
 
         product.setOnItemSelectedListener(this);
@@ -148,13 +148,31 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
 
     public void update(View view) {
 
-        quantityValue=Integer.parseInt(quantity.getText().toString());
+        radio=(RadioButton) findViewById(yesNo.getCheckedRadioButtonId());
+        Log.d("radio new",radio.getText().toString());
+        radioText=radio.getText().toString();
+        if(quantity.getText().toString().isEmpty()){
+            quantity.setError("Enter quantity");
+        }
+        else{
+            quantityValue=Integer.parseInt(quantity.getText().toString());
+        }
+
+        if(discountEditText.getText().toString().isEmpty()){
+            discountEditText.setError("Enter discounts");
+        }
+        else{
+            discountsText=discountEditText.getText().toString();
+            Toast.makeText(this, "Updated Quantity and discount", Toast.LENGTH_LONG).show();
+        }
+
         productString+=": "+quantityValue+"\n";
-        modelShop=new MainViewModel.SellerShopDetails(radioText,productString/*,quantityValue*/);
+
+        modelShop=new MainViewModel.SellerShopDetails(radio.getText().toString(),productString/*,quantityValue*/);
         modelShop.setSellerShoDetails(modelShop);
-        discountsText=discountEditText.getText().toString();
         modelShop=new MainViewModel.SellerShopDetails(discountsText);
         modelShop.setSellerShoDetails(modelShop);
+
 
         database=FirebaseDatabase.getInstance();
         myRef=database.getInstance().getReference("Shop");
@@ -165,7 +183,7 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
 
         ChoiceModel myModel=ChoiceModel.getSingleton();
         myModel.addShopDetails(userNameString,passwordString,productString,quantityValue,discountsText);
-        Toast.makeText(this, "Updated Quantity and discount", Toast.LENGTH_LONG).show();
+
     }
 
     public void toSubscribers(View view) {
