@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     public static final int HOME_PAGE_REQUEST=11;
     ImageButton navigation;
-    Button login;//,editCustomer;
+    Button login,editCustomer;
     private ChoiceAdapter choiceAdapter = null;
     private RecyclerView choiceRV= null;
     private GestureDetectorCompat choiceDetector = null;
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,cities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         city.setAdapter(adapter);
-        //editCustomer=findViewById(R.id.editCustomer);
-        //editCustomer.setClickable(false);
+        editCustomer=findViewById(R.id.editCustomers);
+        editCustomer.setClickable(false);
 
 
         choiceAdapter= new ChoiceAdapter();
@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             startActivity(toEditCustomerActivity);
         }
         else if(login.getText().toString().equals("LOGIN")){
-//            editCustomer.setVisibility(View.INVISIBLE);
-//            editCustomer.setClickable(false);
+            editCustomer.setVisibility(View.INVISIBLE);
+            editCustomer.setClickable(false);
             Toast.makeText(this,"Please login to edit",LENGTH_SHORT).show();
         }
 
@@ -199,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         else if(login.getText().toString().equals("LOG OUT")){
             Toast.makeText(this, "User Logged out", LENGTH_SHORT).show();
             login.setText("LOGIN");
+            editCustomer.setVisibility(View.INVISIBLE);
+            editCustomer.setClickable(false);
 
         }
     }
@@ -209,8 +211,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         if(requestCode==HOME_PAGE_REQUEST){
             if(resultCode== com.example.shopinfo.login.EXTRA_KEY)
                 login.setText("LOG OUT");
-//            editCustomer.setVisibility(View.VISIBLE);
-//            editCustomer.setClickable(true);
+            editCustomer.setVisibility(View.VISIBLE);
+            editCustomer.setClickable(true);
         }
     }
 

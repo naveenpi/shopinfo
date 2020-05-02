@@ -83,10 +83,10 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
                 String str=s;
                 Log.d("message ",s);
                 String[] array=str.split(",");
-                shopName.setText(array[0]);
-                categoText.setText(array[1]);
-                adderessText.setText(array[2]);
-                phoneText.setText(array[3]);
+                shopName.setText("shop name: "+array[0]);
+                categoText.setText("category: "+array[1]);
+                adderessText.setText("Address: "+array[2]);
+                phoneText.setText("phone: "+array[3]);
 
             }});
 
@@ -203,4 +203,9 @@ public class SellerActivity extends AppCompatActivity implements PopupMenu.OnMen
     }
 
 
+    public void edit(View view) {
+
+        Intent toSeller=new Intent(this,EditSelllerActivity.class);
+        startActivity(toSeller);
+    }
 }
