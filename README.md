@@ -11,7 +11,7 @@ Android project Spring 2020
 The main mission of this app is to inform people who are interested in seeking information about the availability of product, quantity of the product and the shop timings, discounts on the products. 
 This app serves a very helpful communication between the customers and the Sellers where through this app the Sellers will be able to address and ease the customer’s problems which they daily encounter like.
 1.	Before they leave their house often customers think if the product is available at the store or not?
-2.	Customers can search the shops based on city and categoery.
+2.	Customers can search the shops based on city.
 3.	If the product is available and if the customers want to make a bulk purchase, Is there sufficient quantity available at the store?
 4.	Any discounts available on the products.
 6.	Customer can call the sellers for further information through the app.
